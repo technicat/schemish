@@ -7,3 +7,5 @@ stay tuned
 [scheme.org](https://www.staging.scheme.org/)
 
 [Gauche](https://practical-scheme.net/gauche/index.html)
+
+[Chez Scheme](https://cisco.github.io/ChezScheme/)
