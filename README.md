@@ -9,3 +9,5 @@ stay tuned
 [Gauche](https://practical-scheme.net/gauche/index.html)
 
 [Chez Scheme](https://cisco.github.io/ChezScheme/)
+
+[Gamebit](http://gambitscheme.org/)
