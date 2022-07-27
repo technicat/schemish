@@ -1,5 +1,3 @@
-#!/usr/local/bin/gosh
-
 (use srfi-27)
 
 (define (pi radius) ((piter radius 0 0)))
@@ -17,7 +15,5 @@
   (< (+ (square x) (square y)) (square radius)))
 
 (define (square x) (* x x))
-
-(pi 1000)
 
 
