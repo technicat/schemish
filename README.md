@@ -1,11 +1,13 @@
-Going back to my roots, playing with [Scheme](https://scheme.com/tspl4/).
+Scheme experiments
 
-[the spec](http://www.r6rs.org/)
+## Docs
 
-[scheme.org](https://www.staging.scheme.org/)
+- [R6RS](http://www.r6rs.org/)
+- [scheme.org](https://www.staging.scheme.org/)
+- [The Scheme Programming Language](https://www.scheme.com/tspl4/)
 
-Some Scheme implementations
+## Implementations
 
-* [Gauche](https://practical-scheme.net/gauche/index.html)
-* [Chez Scheme](https://cisco.github.io/ChezScheme/)
-* [Gambit](http://gambitscheme.org/)
+- [Chez Scheme](https://cisco.github.io/ChezScheme/)
+- [Gambit](http://gambitscheme.org/)
+- [Gauche](https://practical-scheme.net/gauche/index.html)
