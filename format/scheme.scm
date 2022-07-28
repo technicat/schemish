@@ -4,12 +4,11 @@
 
 (define format-input 
     (lambda (p)
-        (let f ([x (read p)])
-                (cond ((eof-object? x)
-                    '())
-                    (else (begin
-                       ; (newline)
-                        (write x))
+        (let ((x (read p)))
+                (if (eof-object? x)
+                    '()
+                     (begin
+                        (write x)
                         (newline)
-                        (f (read p)))))))
+                        (format-input p))))))
            
