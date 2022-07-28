@@ -5,7 +5,8 @@
             (let f ([x (read p)])
                 (cond ((eof-object? x)
                     '())
-                    (else (begin 
-                            (write x)
-                            (cons x (f (read p))))) ))))))
+                    (else (begin
+                        (write x))
+                        (newline)
+                        (f (read p)))))))))
            
