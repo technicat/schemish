@@ -2,4 +2,4 @@
 
 (include "scheme.scm")
 
-(format "run.scm")
+(format-file "run.scm")
