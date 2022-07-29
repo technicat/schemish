@@ -8,6 +8,6 @@ Scheme experiments, currently using [Gauche](https://practical-scheme.net/gauche
 
 ## Resources
 
+- [Community Scheme Wiki](http://community.schemewiki.org/)
 - [Planet Scheme](https://planet.scheme.org/)
 - [Schemers](https://www.schemers.org/)
-- [Wiki](http://community.schemewiki.org/)
