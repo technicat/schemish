@@ -1,4 +1,4 @@
-Scheme experiments
+Scheme experiments, currently using [Gauche](https://practical-scheme.net/gauche/index.html)
 
 ## Docs
 
@@ -6,8 +6,8 @@ Scheme experiments
 - [scheme.org](https://www.staging.scheme.org/)
 - [The Scheme Programming Language](https://www.scheme.com/tspl4/)
 
-## Implementations
+## Resources
 
-- [Chez Scheme](https://cisco.github.io/ChezScheme/)
-- [Gambit](http://gambitscheme.org/)
-- [Gauche](https://practical-scheme.net/gauche/index.html)
+- [Planet Scheme](https://planet.scheme.org/)
+- [Schemers](https://www.schemers.org/)
+- [Wiki](http://community.schemewiki.org/)
