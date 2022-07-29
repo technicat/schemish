@@ -1,4 +1,4 @@
-(use srfi-27)
+(use srfi-27) ; random-real
 
 (define pi 
   (lambda (radius) 
