@@ -22,18 +22,16 @@
                 (newline)
                 (spaces indent)
                 (write-char #\()
-                (format-list exp (+ 1 indent)))
+                (format-list exp (+ 1 indent))
+                 (write-char #\)))
             (write exp))))
 
 (define format-list
     (lambda (exp indent)
-        (cond ((null? exp)
-                (begin 
-                   (write-char #\))
-                    ))
-            (else
+        (if (null? exp) ()
+            (begin 
             (format-exp (car exp) indent)
-            (spaces 1)
+            (if (not (null? (cdr exp))) (spaces 1))
             (format-list (cdr exp) indent)))))
 
 (define spaces
