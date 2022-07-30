@@ -4,14 +4,13 @@
 
 (define pi 
   (lambda (radius) 
-    (piter radius 0 0)))
-
-(define piter
-  (lambda (radius inside total)
-    (print (* 4.0 (/ inside (+ 0.000000001 total))))
-    (if (incircle? (random radius) (random radius) radius)
-        (piter radius (+ 1 inside) (+ 1 total))
-        (piter radius inside (+ 1 total)))))
+    (let f (
+              (inside 0)
+              (total 0))
+      (print (* 4.0 (/ inside (+ 0.000000001 total))))
+      (if (incircle? (random radius) (random radius) radius)
+        (f (+ 1 inside) (+ 1 total))
+        (f inside (+ 1 total))))))
 
 (define random
   (lambda (range)
