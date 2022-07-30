@@ -1,5 +1,16 @@
+#!/usr/local/bin/gosh
+
 ; http://community.schemewiki.org/?scheme-style
 ; working on a scheme formatter - in progress
+
+(use gauche.parseopt) ; command line args
+
+(define (main args)
+  (let-args (cdr args)
+      ((f "f|file=s")
+       . restargs
+      )
+    (format-file f)))
 
 (define format-file
     (lambda (file)
@@ -20,7 +31,7 @@
         (if (list? exp)
                 (begin  
                 (newline)
-                (spaces indent)
+               (spaces indent)
                 (write-char #\()
                 (format-list exp (+ 1 indent))
                  (write-char #\)))
@@ -32,7 +43,20 @@
             (begin 
             (format-exp (car exp) indent)
             (if (not (null? (cdr exp))) (spaces 1))
+          ;  (separator (cdr exp) indent)
             (format-list (cdr exp) indent)))))
+
+(define separator
+    (lambda (exp indent)
+        (cond ((null? exp)
+                (spaces 0))
+            ((list? exp)
+            (begin
+                (newline)
+                (spaces indent)))
+            (else
+                (spaces 1)))))
+    
 
 (define spaces
     (lambda (num)
