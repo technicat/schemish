@@ -1,8 +1,5 @@
 #!/usr/local/bin/gosh
 
-; http://community.schemewiki.org/?scheme-style
-; working on a scheme formatter - in progress
-
 (use gauche.parseopt) ; command line args
 
 (define (main args)

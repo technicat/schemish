@@ -1,5 +1,14 @@
 #!/usr/local/bin/gosh
 
+(use gauche.parseopt) ; command line args
+
+(define (main args)
+  (let-args (cdr args)
+      ((r "r|radius=i" 100)
+       . restargs
+      )
+    (pi r)))
+
 (use srfi-27) ; random-real
 
 (define pi 
@@ -22,13 +31,4 @@
 
 (define square
   (lambda (x) (* x x)))
-
-(use gauche.parseopt) ; command line args
-
-(define (main args)
-  (let-args (cdr args)
-      ((r "r|radius=i" 100)
-       . restargs
-      )
-    (pi r)))
 
