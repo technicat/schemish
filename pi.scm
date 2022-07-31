@@ -13,9 +13,8 @@
 
 (define pi 
   (lambda (radius) 
-    (let f (
-              (inside 0)
-              (total 0))
+    (let f ((inside 0)
+            (total 0))
       (print (* 4.0 (/ inside (+ 0.000000001 total))))
       (if (incircle? (random radius) (random radius) radius)
         (f (+ 1 inside) (+ 1 total))
