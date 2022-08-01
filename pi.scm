@@ -4,10 +4,13 @@
 
 (define (main args)
   (let-args (cdr args)
-      ((r "r|radius=i" 100)
+      ((h "h|help")
+        (r "r|radius=i" 100)
        . restargs
       )
-    (pi r)))
+      (if h
+         (print "pi -r radius")
+          (pi r))))
 
 (use srfi-27) ; random-real
 
