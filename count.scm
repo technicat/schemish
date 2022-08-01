@@ -23,7 +23,7 @@
 (define count-directory
     (lambda (dir type)
         (print dir)
-        (let ((count (count-files (directory-list dir) type)))
+        (let ((count (count-files (directory-list dir :add-path? #\t :children? #\t) type)))
             (print count)
             count)))
 
@@ -37,7 +37,10 @@
 (define count-file
     (lambda (file type)
         (if (or (eq? (string-ref file 0) #\.)
-                (not (equal? (path-extension file) type)))
+                (and (file-is-directory? file)
+                    (path-extension file))
+                (and (file-is-regular? file)
+                    (not (equal? (path-extension file) type))))
             0
             (begin
                 (print file)
