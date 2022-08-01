@@ -40,22 +40,6 @@
                         (directory-list dir :add-path? #\t :children? #\t))
                     seed)))))
 
-(define count-file
-    (lambda (file type)
-        (if (or (eq? (string-ref file 0) #\.)
-                (and (file-is-directory? file)
-                    (path-extension file))
-                (and (file-is-regular? file)
-                    (not (equal? (path-extension file) type))))
-            0
-            (begin
-                (let ((count (if (file-is-directory? file)
-                                (count-directory file type)
-                                (call-with-input-file file count-input))))
-                    (if (> count 0) (begin (print file)
-                        (print count)))
-                     count)))))
-
 (define count-input
     (lambda (p)
         (let f ((total 0))
