@@ -29,10 +29,12 @@
 
 (define count-file
     (lambda (file)
-        (print file)
-        (if (file-is-directory? file)
-            (count-directory file)
-            (call-with-input-file file count-input))))
+        (if (not (eq? (string-ref file 0) #\.))
+            (begin
+                (print file)
+                (if (file-is-directory? file)
+                    (count-directory file)
+                    (call-with-input-file file count-input))))))
 
 (define count-input
     (lambda (p)
