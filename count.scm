@@ -42,7 +42,7 @@
             (begin
                 (print file)
                 (let ((count (if (file-is-directory? file)
-                                (count-directory file)
+                                (count-directory file type)
                                 (call-with-input-file file count-input))))
                      (print count)
                      count)))))
