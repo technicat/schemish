@@ -22,24 +22,27 @@
 
 (define count-files
     (lambda (files)
-        (if (not (null? files))
-            (begin 
-                (count-file (car files))
+        (if (null? files)
+            0
+            (+ (count-file (car files))
                 (count-files (cdr files))))))
 
 (define count-file
     (lambda (file)
-        (if (not (eq? (string-ref file 0) #\.))
+        (if (eq? (string-ref file 0) #\.)
+            0
             (begin
                 (print file)
-                (if (file-is-directory? file)
-                    (count-directory file)
-                    (call-with-input-file file count-input))))))
+                (let ((count (if (file-is-directory? file)
+                                (count-directory file)
+                                (call-with-input-file file count-input))))
+                     (print count)
+                     count)))))
 
 (define count-input
     (lambda (p)
         (let f ((total 0))
              (if (eof-object? (read-line p))
-                (print total)
+                total
                 (f (+ 1 total))))))
 
