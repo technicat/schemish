@@ -7,10 +7,12 @@
       ((f "f|file=s")
        . restargs
       )
-    (count-file f)))
+    (if f
+        (count-file f))))
 
 (define count-file
     (lambda (file)
+        (print file)
         (call-with-input-file file count-input)))
 
 (define count-input
