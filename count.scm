@@ -20,9 +20,9 @@
 
 (define count-current-directory
     (lambda (type)
-        (count-path (current-directory) type)))
+        (count-directory (current-directory) type)))
 
-(define count-path
+(define count-directory
     (lambda (path type) 
         (directory-fold path
             (lambda (file result)
