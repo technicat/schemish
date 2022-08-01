@@ -9,7 +9,7 @@
        . restargs
       )
       (if h
-         (print "pi -r radius")
+         (print "pi.scm -r radius")
           (pi r))))
 
 (use srfi-27) ; random-real

@@ -5,12 +5,16 @@
 
 (define (main args)
   (let-args (cdr args)
-      ((f "f|file=s")
+      ((h "h|help")
+      (f "f|file=s")
        . restargs
       )
-    (if f
-        (count-file f)
-        (count-current-directory))))
+    (if h
+        (begin (print "count.scm -f file")
+                (print "count.scm -h"))
+        (if f
+            (count-file f)
+            (count-current-directory)))))
 
 (define count-current-directory
     (lambda ()
