@@ -18,7 +18,10 @@
 
 (define count-directory
     (lambda (dir)
-        (count-files (directory-list dir))))
+        (print dir)
+        (let ((count (count-files (directory-list dir))))
+            (print count)
+            count)))
 
 (define count-files
     (lambda (files)
