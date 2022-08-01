@@ -6,8 +6,8 @@
 (define (main args)
   (let-args (cdr args)
       ((h "h|help")
-      (f "f|file=s")
-      (t "t|type=s")
+        (f "f|file=s")
+        (t "t|type=s")
        . restargs
       )
     (if h
@@ -32,11 +32,8 @@
             :lister
             (lambda (dir seed)
                 (values (remove (lambda (file)
-                             (or (eq? (string-ref file 0) #\.) ; ignore dot files
-                            (and (file-is-directory? file) ; weird directories
-                                (path-extension file))
                             (and (file-is-regular? file) ; wrong extension
-                                (not (equal? (path-extension file) type)))))
+                                (not (equal? (path-extension file) type))))
                         (directory-list dir :add-path? #\t :children? #\t))
                     seed)))))
 
