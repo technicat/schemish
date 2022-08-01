@@ -17,7 +17,7 @@
             (count-current-directory t)))))
 
 (define count-current-directory
-    (lambda ()
+    (lambda (type)
         (count-directory (current-directory) type)))
 
 (define count-directory
