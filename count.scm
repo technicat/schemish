@@ -1,7 +1,7 @@
 #!/usr/local/bin/gosh
 
 (use gauche.parseopt) ; command line args
-(use file.util)
+(use file.util) ; directory
 
 (define (main args)
   (let-args (cdr args)
