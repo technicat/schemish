@@ -12,27 +12,33 @@
       )
     (if h
         (print "count.scm -f file -t type")
-        (if f
-            (count-file f t)
-            (count-current-directory t)))))
+        (let ((count 
+            (if f
+                (count-file f t)
+                (count-current-directory t))))
+            (print count)))))
 
 (define count-current-directory
     (lambda (type)
-        (count-directory (current-directory) type)))
+        (count-path (current-directory) type)))
 
-(define count-directory
-    (lambda (dir type)
-        (print dir)
-        (let ((count (count-files (directory-list dir :add-path? #\t :children? #\t) type)))
-            (print count)
-            count)))
-
-(define count-files
-    (lambda (files type)
-        (if (null? files)
+(define count-path
+    (lambda (path type) 
+        (directory-fold path
+            (lambda (file result)
+                (+ result 
+                    (call-with-input-file file count-input)))
             0
-            (+ (count-file (car files) type)
-                (count-files (cdr files) type)))))
+            :lister
+            (lambda (dir seed)
+                (values (remove (lambda (file)
+                             (or (eq? (string-ref file 0) #\.) ; ignore dot files
+                            (and (file-is-directory? file) ; weird directories
+                                (path-extension file))
+                            (and (file-is-regular? file) ; wrong extension
+                                (not (equal? (path-extension file) type)))))
+                        (directory-list dir :add-path? #\t :children? #\t))
+                    seed)))))
 
 (define count-file
     (lambda (file type)
@@ -43,11 +49,11 @@
                     (not (equal? (path-extension file) type))))
             0
             (begin
-                (print file)
                 (let ((count (if (file-is-directory? file)
                                 (count-directory file type)
                                 (call-with-input-file file count-input))))
-                     (print count)
+                    (if (> count 0) (begin (print file)
+                        (print count)))
                      count)))))
 
 (define count-input
