@@ -11,10 +11,10 @@
        . restargs
       )
     (if h
-        (print "count.scm -f file -t type")
+        (print "countlines.scm -f file -t type")
         (let ((count 
             (if f
-                (count-file f t)
+                (call-with-input-file f count-input)
                 (count-current-directory t))))
             (print count)))))
 
