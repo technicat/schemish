@@ -2,7 +2,8 @@
 
 (use gauche.parseopt) ; command line args
 (use file.util) ; directory
-(use srfi-180)
+;(use srfi-180)
+(use rfc.json)
 
 (define (main args)
   (let-args (cdr args)
@@ -26,7 +27,7 @@
     (lambda (path) 
         (directory-fold path
             (lambda (file result)
-                (json-input file))
+                (+ result (call-with-input-file file json-input)))
             0
             :lister
             (lambda (dir seed)
@@ -38,5 +39,8 @@
 
 (define json-input
     (lambda (p)
-        (json-generator p)))
+        (let ((result (parse-json p)))
+            (if (list? result)
+                (length result)
+                1))))
 
