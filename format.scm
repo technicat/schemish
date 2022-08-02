@@ -28,22 +28,24 @@
 (define format-exp
     (lambda (exp indent)
         (if (list? exp)
-                (begin  
+            (begin  
                 (newline)
-               (spaces indent)
+                (spaces indent)
                 (write-char #\()
                 (format-list exp (+ 1 indent))
-                 (write-char #\)))
+                (write-char #\)))
             (write exp))))
 
 (define format-list
     (lambda (exp indent)
-        (if (null? exp) ()
+        (if (null? exp) 
+            ()
             (begin 
-            (format-exp (car exp) indent)
-            (if (not (null? (cdr exp))) (spaces 1))
-          ;  (separator (cdr exp) indent)
-            (format-list (cdr exp) indent)))))
+                (format-exp (car exp) indent)
+                (if (not (null? (cdr exp)))
+                    (spaces 1))
+                    ;  (separator (cdr exp) indent)
+                    (format-list (cdr exp) indent)))))
 
 (define separator
     (lambda (exp indent)
