@@ -1,8 +1,7 @@
 #!/usr/local/bin/gosh
 
-(use gauche.parseopt) ; command line args
-(use file.util) ; directory
-;(use srfi-180)
+(include "utils.scm")
+
 (use rfc.json)
 
 (define (main args)
@@ -39,10 +38,7 @@
             0
             :lister
             (lambda (dir seed)
-                (values (remove (lambda (file)
-                            (and (file-is-regular? file) ; wrong extension
-                                (not (equal? (path-extension file) "json"))))
-                        (directory-list dir :add-path? #\t :children? #\t))
+                (values (filter-dir dir "json")
                     seed)))))
 
 (define json-file

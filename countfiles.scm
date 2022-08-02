@@ -1,7 +1,6 @@
 #!/usr/local/bin/gosh
 
-(use gauche.parseopt) ; command line args
-(use file.util) ; directory
+(include "utils.scm")
 
 (define (main args)
   (let-args (cdr args)
@@ -35,18 +34,8 @@
                 (+ result 1))
             0
             :lister
-            (lambda (dir seed)
-                (values (remove
-                            (lambda (file)
-                                (ignore-file? file type))
-                            (directory-list dir :add-path? #\t :children? #\t))
+             (lambda (dir seed)
+                (values (filter-dir dir type)
                     seed)))))
 
-(define ignore-file?
-    (lambda (file type)
-      (let-values (((dir name ext) (decompose-path file)))
-        (or (eq? (string-ref name 0) #\.) ; ignore dot files/directories
-            (and type ; check extension
-                (file-is-regular? file) 
-                (not (equal? ext type)))))))
 

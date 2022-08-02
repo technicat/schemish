@@ -1,7 +1,6 @@
 #!/usr/local/bin/gosh
 
-(use gauche.parseopt) ; command line args
-(use file.util) ; directory
+(include "utils.scm")
 
 (define (main args)
   (let-args (cdr args)
@@ -39,11 +38,7 @@
             0
             :lister
             (lambda (dir seed)
-                (values (remove (lambda (file)
-                            (and type
-                                (file-is-regular? file) ; wrong extension
-                                (not (equal? (path-extension file) type))))
-                        (directory-list dir :add-path? #\t :children? #\t))
+                (values (filter-dir dir type)
                     seed)))))
 
 (define count-input
