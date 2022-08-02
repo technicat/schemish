@@ -23,8 +23,8 @@
             (print "json.scm"))
         (if f
             (json-file f p)
-            (let ((total (json-current-directory p)))
-                (print total))))))
+            (let ((count (json-current-directory p)))
+                (print (string-append (number->string count) " JSON files")))))))
 
 (define json-current-directory
     (lambda (p)
