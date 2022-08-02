@@ -24,7 +24,7 @@
             (if f
                 (call-with-input-file f count-input)
                 (count-current-directory t))))
-            (print count)))))
+            (print (string-append (number->string count) " lines"))))))
 
 (define count-current-directory
     (lambda (type)
