@@ -22,7 +22,7 @@
         )
         (let ((count 
                 (count-current-directory t)))
-            (print count)))))
+            (print (string-append (number->string count) " files"))))))
 
 (define count-current-directory
     (lambda (type)
