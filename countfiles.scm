@@ -10,7 +10,16 @@
        . restargs
       )
     (if h
-        (print "countfiles.scm -t type")
+        (begin
+            (print "countfiles.scm -h -t type")
+            (print "Count lines in a file.")
+            (print "If no file specified, recursively process files in current directory.")
+            (print "Specify a file type (suffix) to filter.")
+            (print "Examples:")
+            (print "countfiles.scm -h")
+            (print "countfiles.scm -t scm")
+            (print "countfiles.scm")
+        )
         (let ((count 
                 (count-current-directory t)))
             (print count)))))
