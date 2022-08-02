@@ -11,7 +11,15 @@
        . restargs
       )
     (if h
-        (print "countlines.scm -f file -t type")
+        (begin 
+            (print "countlines.scm -h -f file -t type")
+            (print "Count lines in a file.")
+            (print "If no file specified, recursively process files in current directory.")
+            (print "Specify a file type (suffix) to filter.")
+            (print "Examples:")
+            (print "countlines.scm -h")
+            (print "countlines.scm -f countlines.scm")
+            (print "countlines.scm -t scm"))
         (let ((count 
             (if f
                 (call-with-input-file f count-input)
