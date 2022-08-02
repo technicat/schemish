@@ -13,9 +13,13 @@
       )
     (if h
         (begin
+            (print "json.scm -h -f file")
             (print "A JSON validator.")
             (print "Specify a file, or no file to recursively check the current directory.")
-            (print "json.scm -f file"))
+            (print "Examples:")
+            (print "json.scm -h")
+            (print "json.scm -f asset.json")
+            (print "json.scm"))
         (let ((count 
             (if f
                 (json-file f)
