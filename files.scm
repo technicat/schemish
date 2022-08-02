@@ -10,14 +10,13 @@
       )
     (if h
         (begin
-            (print "countfiles.scm -h -t type")
-            (print "Count lines in a file.")
-            (print "If no file specified, recursively process files in current directory.")
+            (print "files.scm -h -t type")
+            (print "Count number of files in current directory (and below).")
             (print "Specify a file type (suffix) to filter.")
             (print "Examples:")
-            (print "countfiles.scm -h")
-            (print "countfiles.scm -t scm")
-            (print "countfiles.scm")
+            (print "files.scm -h")
+            (print "files.scm -t scm")
+            (print "files.scm")
         )
         (let ((count 
                 (count-current-directory t)))
