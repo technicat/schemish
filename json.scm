@@ -39,7 +39,7 @@
 
 (define json-file
     (lambda (file)
-        (guard (e (else (write (string-append "JSON error in " file))
+        (guard (e (else (print (string-append "JSON error in " file))
                         0))
             (call-with-input-file file json-input))))
 
