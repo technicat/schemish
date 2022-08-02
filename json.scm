@@ -9,32 +9,33 @@
   (let-args (cdr args)
       ((h "h|help")
         (f "f|file=s")
+        (p "p|print")
        . restargs
       )
     (if h
         (begin
-            (print "json.scm -h -f file")
+            (print "json.scm -h -p -f file")
             (print "A JSON validator.")
             (print "Specify a file, or no file to recursively check the current directory.")
             (print "Examples:")
             (print "json.scm -h")
             (print "json.scm -f asset.json")
             (print "json.scm"))
-        (let ((count 
-            (if f
-                (json-file f)
-                (json-current-directory))))
-            (print count)))))
+        (if f
+            (json-file f p)
+            (let ((total (json-current-directory p)))
+                (print total))))))
 
 (define json-current-directory
-    (lambda ()
-        (json-directory (current-directory))))
+    (lambda (p)
+        (json-directory (current-directory) p)))
 
 (define json-directory
-    (lambda (path) 
+    (lambda (path p) 
         (directory-fold path
             (lambda (file result)
-                (+ result (json-file file)))
+                    (json-file file p)
+                    (+ 1 result))
             0
             :lister
             (lambda (dir seed)
@@ -45,16 +46,11 @@
                     seed)))))
 
 (define json-file
-    (lambda (file)
+    (lambda (file p)
         (guard (e (else (print (string-append "JSON error in " file))
                         (print (condition-message e))
-                        0))
-            (call-with-input-file file json-input))))
-
-(define json-input
-    (lambda (p)
-        (let ((result (parse-json p)))
-            (if (list? result)
-                (length result)
-                1))))
+                        #\f))
+            (let ((exp (call-with-input-file file parse-json)))
+                (if p (print exp))
+                exp))))
 
