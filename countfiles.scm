@@ -28,7 +28,8 @@
             :lister
             (lambda (dir seed)
                 (values (remove (lambda (file)
-                            (and (file-is-regular? file) ; wrong extension
+                            (and type
+                                (file-is-regular? file) ; wrong extension
                                 (not (equal? (path-extension file) type))))
                         (directory-list dir :add-path? #\t :children? #\t))
                     seed)))))
