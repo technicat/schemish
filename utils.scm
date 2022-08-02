@@ -1,3 +1,5 @@
+; utils for command-line tools
+
 (use file.util)
 (use gauche.parseopt) ; command line args
 
