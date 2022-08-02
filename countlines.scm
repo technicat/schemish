@@ -41,7 +41,7 @@
 (define count-input
     (lambda (p)
         (let f ((total 0))
-            (guard (e (else total))
+            (guard (e (else total)) ; bail out of binary
              (if (eof-object? (read-line p))
                 total
                 (f (+ 1 total)))))))
