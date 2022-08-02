@@ -13,8 +13,8 @@
       )
     (if h
         (begin
-             (print "A JSON validator.")
-              (print "Specify a file, or no file to recursively check the current directory.")
+            (print "A JSON validator.")
+            (print "Specify a file, or no file to recursively check the current directory.")
             (print "json.scm -f file"))
         (let ((count 
             (if f
@@ -43,7 +43,7 @@
 (define json-file
     (lambda (file)
         (guard (e (else (print (string-append "JSON error in " file))
-                        (describe e)
+                        (print (condition-message e))
                         0))
             (call-with-input-file file json-input))))
 
