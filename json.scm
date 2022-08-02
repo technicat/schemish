@@ -15,7 +15,7 @@
         (print "json.scm -f file")
         (let ((count 
             (if f
-                (call-with-input-file f json-input)
+                (json-file f)
                 (json-current-directory))))
             (print count)))))
 
@@ -27,7 +27,7 @@
     (lambda (path) 
         (directory-fold path
             (lambda (file result)
-                (+ result (call-with-input-file file json-input)))
+                (+ result (json-file file)))
             0
             :lister
             (lambda (dir seed)
@@ -36,6 +36,12 @@
                                 (not (equal? (path-extension file) "json"))))
                         (directory-list dir :add-path? #\t :children? #\t))
                     seed)))))
+
+(define json-file
+    (lambda (file)
+        (guard (e (else (write (string-append "JSON error in " file))
+                        0))
+            (call-with-input-file file json-input))))
 
 (define json-input
     (lambda (p)
