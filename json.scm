@@ -12,7 +12,10 @@
        . restargs
       )
     (if h
-        (print "json.scm -f file")
+        (begin
+             (print "A JSON validator.")
+              (print "Specify a file, or no file to recursively check the current directory.")
+            (print "json.scm -f file"))
         (let ((count 
             (if f
                 (json-file f)
