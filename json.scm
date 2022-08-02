@@ -23,7 +23,7 @@
         (if f
             (json-file f p)
             (let ((count (json-current-directory p)))
-                (print (string-append (number->string count) " JSON files")))))))
+                (print #"Checked ~count JSON files"))))))
 
 (define json-current-directory
     (lambda (p)

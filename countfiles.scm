@@ -21,7 +21,7 @@
         )
         (let ((count 
                 (count-current-directory t)))
-            (print (string-append (number->string count) " files"))))))
+            (print #"Found ~count files")))))
 
 (define count-current-directory
     (lambda (type)
