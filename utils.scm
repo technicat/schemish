@@ -3,6 +3,7 @@
 (use file.util)
 (use gauche.parseopt) ; command line args
 
+; todo - make type a list of types, and make ignore hidden files an option
 (define ignore-file?
     (lambda (file type)
       (let-values (((dir name ext) (decompose-path file)))

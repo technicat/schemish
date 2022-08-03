@@ -1,6 +1,7 @@
 #!/usr/local/bin/gosh
 
 (use gauche.parseopt) ; command line args
+(use srfi-27) ; random-real
 
 (define (main args)
   (let-args (cdr args)
@@ -11,8 +12,6 @@
       (if h
          (print "pi.scm -r radius")
           (pi r))))
-
-(use srfi-27) ; random-real
 
 (define pi 
   (lambda (radius) 
