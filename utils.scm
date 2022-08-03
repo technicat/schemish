@@ -16,5 +16,5 @@
         (remove
             (lambda (file)
                 (ignore-file? file type))
-            (directory-list dir :add-path? #\t :children? #\t))))
+            (directory-list dir :add-path? #t :children? #t))))
 
