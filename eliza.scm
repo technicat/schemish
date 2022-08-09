@@ -48,8 +48,6 @@
   (and (pair? pattern)
    (eq? (car (car pattern)) '?*))))
 
-;;; ==============================
-
 (define segment-match
  (lambda (pattern input bindings :optional (start 0))
   (let ((var (cadr (car pattern)))
@@ -71,8 +69,6 @@
         (segment-match pattern input bindings (+ pos 1))
         b2))))))))
 
-;;; ==============================
-
 (define rule-pattern
  (lambda (rule)
   (car rule)))
@@ -81,29 +77,21 @@
  (lambda (rule)
   (cdr rule)))
 
-;;; ==============================
-
-(define eliza
- (lambda ()
-  (print 'eliza>)
-  (write (flatten (use-eliza-rules (read))) :pretty #t)
-  (eliza)))
-
 (define use-eliza-rules
  (lambda (input)
-  (filter (lambda (rule)
-           (let ((result (pat-match (rule-pattern rule) input)))
-            (if (not (eq? result fail))
-             (sublis (switch-viewpoint result)
-              (random-elt (rule-responses rule))))))
+  (filter-map
+   (lambda (rule)
+    (let ((result (pat-match (rule-pattern rule) input)))
+     (if (not (eq? result fail))
+      (sublis (switch-viewpoint result)
+       (random-elt (rule-responses rule))
+       #f))))
    *eliza-rules*)))
 
 (define switch-viewpoint
  (lambda (words)
   (sublis '((I . you) (you . I) (me . you) (am . are))
    words)))
-
-;;; ==============================
 
 (define flatten
  (lambda (the-list)
@@ -118,8 +106,6 @@
 (define random-elt
  (lambda (choices)
   (elt choices (random (length choices)))))
-
-;;; ==============================
 
 ;;;> (eliza)
 ;;;ELIZA> (hello there)
@@ -140,31 +126,22 @@
 ;;;(DO YOU OFTEN FEEL THIS IS ENOUGH ?)
 ;;;ELIZA> [Abort]
 
-;;; ==============================
-
-
-;;; ==============================
-
 (define read-line-no-punct
  (lambda ()
   (string-split (read-line) #\ )))
 
-;;; ==============================
-
 (define eliza
  (lambda ()
-  (loop
-   (print 'eliza>)
-   (let* ((input (read-line-no-punct))
-          (response (flatten (use-eliza-rules input))))
-    (print-with-spaces response)
-    (if (equal response '(good bye)) (RETURN))))))
+  (print 'eliza>)
+  (let* ((input (read-line-no-punct))
+         (response (flatten (use-eliza-rules input))))
+   (print-with-spaces response)
+   (if (not (equal response '(good bye)))
+    (eliza)))))
 
 (define print-with-spaces
  (lambda (list)
   (write (string-join list " "))))
-
-;;; ==============================
 
 (define *eliza-rules*
  '((((?* ?x) hello (?* ?y))
@@ -292,5 +269,4 @@
     (What does that suggest to you?) (Please continue) (Go on)
     (Do you feel strongly about discussing such things?))))
 
-;;; ==============================
 
