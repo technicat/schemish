@@ -1,4 +1,5 @@
-;;; -*- Mode: Lisp; Syntax: Common-Lisp; -*-
+#!/usr/local/bin/gosh
+
 ;;; Code from Paradigms of Artificial Intelligence Programming
 ;;; Copyright (c) 1991 Peter Norvig
 
@@ -13,11 +14,20 @@
 
 ;; converted to Gauche Scheme
 
+(use gauche.parseopt) ; command line args
+(use srfi-27) ; random-real
+
+(define (main args)
+  (eliza))
+
 (define variable-p
  (lambda (x)
-  (and (symbol? x) (equal (string-ref (symbol->string x) 0) #\?))))
+  (and (symbol? x) 
+    (equal (string-ref (symbol->string x) 0) #\?))))
 
-(define punctuation-p (char) (find char ".,;:`!?#-()\\\""))
+(define punctuation-p 
+  (lambda (char) 
+    (find char ".,;:`!?#-()\\\"")))
 
 (define pat-match
  (lambda (pattern input :optional (bindings '()))
