@@ -17,6 +17,8 @@
  (lambda (x)
   (and (symbol? x) (equal (string-ref (symbol->string x) 0) #\?))))
 
+(define punctuation-p (char) (find char ".,;:`!?#-()\\\""))
+
 (define pat-match
  (lambda (pattern input :optional (bindings '()))
   (cond ((eq? bindings 'fail) fail)
