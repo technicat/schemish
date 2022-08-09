@@ -11,9 +11,11 @@
 
 ;; New version of pat-match with segment variables
 
+;; converted to Gauche Scheme
+
 (define variable-p
  (lambda (x)
-  (and (symbol? x) (equal (elt (symbol-name x) 0) #\?))))
+  (and (symbol? x) (equal (string-ref (symbol->string x) 0) #\?))))
 
 (define pat-match
  (lambda (pattern input :optional (bindings '()))
