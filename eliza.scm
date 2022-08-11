@@ -82,11 +82,10 @@
   (filter-map
    (lambda (rule)
     (let ((result (pat-match (rule-pattern rule) input)))
-     (if (not (eq? result fail))
+     (and (not (eq? result 'fail))
       (sublis (switch-viewpoint result)
-       (random-elt (rule-responses rule))
-       #f))))
-   *eliza-rules*)))
+       (random-elt (rule-responses rule)))))
+   *eliza-rules*))))
 
 (define switch-viewpoint
  (lambda (words)
