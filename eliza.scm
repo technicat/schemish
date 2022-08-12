@@ -12,7 +12,7 @@
 
 ;; New version of pat-match with segment variables
 
-;; converted to Gauche Scheme
+;; converting to Gauche Scheme
 
 (use gauche.parseopt) ; command line args
 (use srfi-27) ; random-real
