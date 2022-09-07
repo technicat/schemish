@@ -1,4 +1,5 @@
-Scheme experiments, using [Gauche](https://practical-scheme.net/gauche/index.html)
+Scheme snippets and experiments,
+using [Gauche](https://practical-scheme.net/gauche/index.html)
 
 ## Docs
 
