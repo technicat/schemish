@@ -6,7 +6,7 @@
 (define (main args)
  (let-args (cdr args)
   ((h "h|help")
-   (r "r|radius=i" 100)
+   (r "r|radius=n" 100)
    . restargs
    )
   (if h
